@@ -1,146 +1,67 @@
-/* Основные стили проекта. Это стили для темы, которую вы верстаете первой. */
-
 .page {
-  /* сохраните в разметке и стилях класс page у тега body. Он удобен, чтобы составлять селекторы для разных цветовых тем. */
-
-
   background-color: var(--bg-color);
-  /*путь с переменной */
-  background-image: var(--cover-image); 
-
-  /* Расположите фоновое изображение по центру. Пусть оно закрывает собой всего родителя. */
+  background-image: var(--cover-image);
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
-  /* фиксированный и прокручивается с нами*/
-  background-attachment: fixed; 
-
-  /* это общие штуки для всей страницы */
-
+  background-attachment: fixed;
   color: var(--main-text-color);
   font-family: 'IBM Plex mono', monospace;
   font-size: var(--text-size);
   line-height: 1.3;
-
+  margin: 0;
 }
 
 .header {
-  /* Grid  */
   display: grid;
-  grid-template-columns: repeat(2,1fr); 
-  grid-template-rows: repeat(3,auto); /* три строки */
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(3, auto);
   align-items: center;
-  /* со всех сторон отстают на 10 */
-  
-  /* Высота на весь viewport */
-
-   /* относительное позиционирование элемента для уголков и надписи */
   position: relative;
-
-  
   margin-block: 10px;
   margin-inline: 10px;
   grid-template-areas: 
     ". header__theme-menu"
     "header__accent-header header__accent-header"
     "header__accent-paragraph header__accent-paragraph";
+  block-size: 100vb;
 }
 
-/*  уголки через псевдоэлементы для класса общей страницы .ygol */
-/* .ygol::before {
-  content: "";
-  position: absolute; */
-  /* это чтобы он вообще существовал */
-  /* inline-size: 25px;
-  block-size: 25px; */
-
-  /* оборачиваем этот "контент" в рамочку */
-  /* border-inline-end: 1px solid var(--menu-color);
-  border-block-start: 1px solid var(--menu-color); */
-  /* отодвинули как абсолютно позиционированный элемент */
-  /* right: 10px;
-  top: 10px; */
-
-  /* вот этот вариант делает углы ближе к точке */
-  /* top: 0;
-  right: 0;
-  margin: 20px; */
-/* } */
-
-/* .ygol::after {
-  content: "";
-  position: absolute;
-  inline-size: 25px;
-  block-size: 25px;
-  border-inline-start: 1px solid var(--menu-color);
-  border-block-end: 1px solid var(--menu-color);
-  left: 10px;
-  bottom: 10px; */
-/* 
-  bottom: 0;
-  left: 0;
-  margin: 20px; */
-/* } */
-
 .header::before,
-.footer::before{
-   content: "";
+.footer::before {
+  content: "";
   position: absolute;
   bottom: 0;
   left: 0;
   display: block;
-  width:26px;
+  width: 26px;
   height: 26px;
 }
 
 .header::after,
-.footer::after{
+.footer::after {
   content: "";
   position: absolute;
   display: block;
   top: 0;
   right: 0;
-  width:26px;
+  width: 26px;
   height: 26px;
 }
 
-
-
-/*REC */
-
-
-/*  точкa  */
-/* .header__rec::after {
-  content: "";
-  display: inline-block;
-  inline-size: 9px;
-  block-size: 9px;
-  border-radius: 50%;
-  background-color: var(--accent-color); */
-/* она немного размылась */
-  /* box-shadow: 0 0 4px 2px var(--accent-color);
-  margin-inline-start: 10px;
-  
-  
-} */
-
-/* Меню в шапке - день ночь авто */
-/* ok */
 .header__theme-menu {
   grid-area: header__theme-menu;
   justify-self: end;
   align-self: start;
   margin-block-start: 0px;
-
 }
 
 .header__theme-menu-list {
   display: grid;
-  grid-template-rows: repeat(3,auto);
+  grid-template-rows: repeat(3, auto);
   gap: 10px;
   align-content: center;
   min-height: 220px;
-  
   list-style-type: none;
 }
 
@@ -164,8 +85,6 @@
 }
 
 .header__theme-menu-button:focus-visible {
-  
-  /* так верно - так только внизу чёрточка */
   border-block-end: 1px solid var(--menu-color);
 }
 
@@ -174,37 +93,29 @@
   pointer-events: none;
 }
 
-/* заголовок */
 .header__title {
   color: var(--title-color);
-  /* font-size: clamp(7.25rem, 7.0115rem + 1.0178vw, 7.5rem); */
   font-weight: 700;
   line-height: 0.825;
   text-shadow: 4px 4px 0 var(--accent-color);
   align-self: center;
-
   font-size: clamp(7.25rem, 7.0115rem + 1.0178vw, 7.5rem);
   grid-area: header__accent-header;
 }
 
-/* Текст в шапке*/
 .header__text {
-  /* align-self: start; */
   font-size: var(--text-size);
   font-weight: 700;
   line-height: 1.3;
   max-inline-size: 100%;
-   grid-area: header__accent-paragraph;
-  /* нам эта штука сгодиться должна при адаптиве, иначе просто удалим, но она делает блок меньше. */
-  margin-block: 55px ;
+  grid-area: header__accent-paragraph;
+  margin-block: 55px;
 }
 
-/* Общий класс для элементов с цветным фоном */
 .title-decor {
   color: var(--text-title-color);
   background-color: var(--accent-color);
 }
-
 
 .main {
   display: flex;
@@ -213,13 +124,11 @@
   padding: 40px 10px;
 }
 
-/* Секции */
 .section {
   display: grid;
   gap: 20px;
 }
 
-/* Заголовок секции */
 .section__title {
   color: var(--section-title-color);
   font-size: var(--text-size);
@@ -227,28 +136,24 @@
   line-height: 1.3;
 }
 
-/* Контент секции */
 .section__content {
   display: flex;
   flex-direction: column;
   gap: 20px;
 }
 
-/* Статьи */
 .article {
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
 
-/* Заголовок статьи с фоном */
 .article__title {
   font-size: var(--text-size);
   font-weight: 700;
   line-height: 1.3;
 }
 
-/* Текст статьи */
 .article__text {
   color: var(--main-text-color);
   font-size: var(--text-size);
@@ -264,23 +169,16 @@
   margin-block-start: 10px;
 }
 
-/* Ссылки */
 .link {
   color: var(--main-text-color);
   text-decoration: none;
   text-shadow: 2px 2px 0 var(--accent-color);
   transition: text-shadow 0.3s ease;
-  /* это чтобы тени у подчёркивания ссылки небыло */
   border-bottom: 1px solid transparent;
 }
 
 .link:hover {
-  /* text-shadow: 1px 1px 0 var(--accent-color); */
-
-
-   /* это чтобы тни у подчёркивания ссылки небыло потому не просто text-decoration: underline; */
-   border-bottom-color: var(--main-text-color);
-   /* text-decoration: underline; */
+  border-bottom-color: var(--main-text-color);
 }
 
 .link:focus {
@@ -292,11 +190,6 @@
   outline-offset: 1px;
 }
 
-
-
-                          /* Приколы к последней секции оно может и не нужно*/
-
-/* Дополнительный подзаголовок в секции */
 .section__subtitle {
   margin-block-end: 20px;
 }
@@ -308,12 +201,10 @@
   margin: 0;
 }
 
-/* для жирного текст*/
 .article__text strong {
   font-weight: 700;
   text-shadow: 2px 2px 0 var(--accent-color);
 }
-
 
 .gallery {
   padding: 40px 10px;
@@ -328,15 +219,11 @@
   line-height: 1.3;
 }
 
-/* Мобильная - простые гриды */
 .gallery__grid {
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
-
-
-/* свойства картинки */
 
 .gallery__image {
   width: 100%;
@@ -345,9 +232,9 @@
   display: block;
 }
 
-
 .footer {
   min-block-size: 100vh;
+  block-size: 100vb;
   padding: 20px;
   position: relative;
   display: flex;
@@ -357,36 +244,25 @@
 
 .footer__title {
   text-shadow: 4px 4px 0 var(--accent-color);
-  font-size: clamp(7.25rem, 7.0115rem + 1.0178vw, 7.5rem); ;
+  font-size: clamp(7.25rem, 7.0115rem + 1.0178vw, 7.5rem);
   color: var(--title-color);
   font-weight: 700;
   line-height: 82.5%;
-  
 }
 
-
-
-.decorative__element {
-  margin: 10px;
-}
-
-
-/* Планшет (768px) */
 @media (width >= 768px) {
-
   .header {
     grid-template-areas: 
-    ". header__theme-menu"
-    "header__accent-header header__accent-header"
-    ". header__accent-paragraph";
+      ". header__theme-menu"
+      "header__accent-header header__accent-header"
+      ". header__accent-paragraph";
     margin-inline: 0 20px;
     margin-block: 20px;
   }
-  .header::before {
-    left:20px;
-  }
-  
 
+  .header::before {
+    left: 20px;
+  }
   
   .header__title {
     font-size: clamp(7.5rem, 0.5625rem + 14.4531vw, 9.8125rem);
@@ -404,11 +280,9 @@
     gap: 80px;
   }
 
-
-  /* это первая */
   .section:first-of-type {
     display: grid;
-    grid-template-columns: minmax(236px, 315px) 1fr; /* Фиксируем ширину заголовка как в другом CSS */
+    grid-template-columns: minmax(236px, 315px) 1fr;
     gap: 20px;
     align-items: start;
   }
@@ -416,7 +290,7 @@
   .section:first-of-type .section__title {
     grid-column: 1;
     margin-top: 18px;
-    padding-block-start: 0; /* Убираем верхний отступ для точного выравнивания */
+    padding-block-start: 0;
   }
   
   .section:first-of-type .section__content {
@@ -426,14 +300,9 @@
     gap: 20px;
   }
 
-  /* вторая секция */
-
-
-
-  /* это третья секция */
   .section:nth-of-type(3) {
     display: grid;
-    grid-template-columns: 1fr 2fr; /* Заголовок слева, контент справа */
+    grid-template-columns: 1fr 2fr;
     gap: 20px;
     align-items: start;
   }
@@ -451,9 +320,6 @@
     gap: 20px;
   }
 
-
-
-
   .gallery {
     padding: 60px 20px;
   }
@@ -463,7 +329,6 @@
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(3, auto);
     gap: 20px;
-    
   }
   
   .gallery__image:nth-child(1) {
@@ -490,32 +355,30 @@
     grid-column: 2 / 4;
     grid-row: 3 / 4;
   }
+
   .gallery__image {
-    width: 100%; 
-    height: 100%; 
-    object-fit: cover; 
-    object-position: center; 
-    display: block; 
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
   }
 
-  .header__theme-menu{
+  .header__theme-menu {
     grid-area: header__theme-menu;
     justify-content: end;
   }
 
-
-  .header__theme-menu-list{
+  .header__theme-menu-list {
     min-height: 443px;
   }
-
 
   .section-concentration {
     display: grid;
     grid-template-columns: 236px 1fr;
     grid-template-rows: auto;
     grid-template-areas: 
-      "title . ."
-      "content content content";
+      "title content";
     gap: 20px;
     align-items: start;
   }
@@ -533,50 +396,36 @@
     flex-direction: column;
     gap: 20px;
   }
-
-
-
-
 }
 
-/* Десктоп (1024px) */
 @media (width >= 1024px) {
-
   .header {
     grid-template-areas: 
-    "header__theme-menu header__theme-menu"
-    "header__accent-header header__accent-header"
-    ". header__accent-paragraph";
+      "header__theme-menu header__theme-menu"
+      "header__accent-header header__accent-header"
+      ". header__accent-paragraph";
     margin-inline: 0 20px;
     margin-block: 20px;
   }
 
-
- .header__theme-menu {
+  .header__theme-menu {
     justify-self: center;
     margin-inline-start: 20px;
   }
   
   .header__theme-menu-list {
-    /* потому что выравниваем относительно верха */
     align-content: start;
-    grid-template-columns: repeat(3,auto);
+    grid-template-columns: repeat(3, auto);
     min-height: 299px;
   }
   
   .header__title {
     margin-inline-start: 0%;
   }
-  
 
   .section:nth-of-type(3) .article__title {
-    font-weight: 400; /* Normal вместо bold */
- 
+    font-weight: 400;
   }
-
-
-
-
   
   .gallery {
     padding: 80px 20px;
@@ -586,16 +435,13 @@
     gap: 25px;
   }
 
-
   .section-concentration {
-    display: block; /* Возвращаем к обычному потоку */
+    display: block;
   }
   
   .section-concentration .section__title {
-    inline-size: 100%; /* Занимает всю ширину */
+    inline-size: 100%;
     margin-block-end: 20px;
-    
-    /* Убираем фиксированные размеры для десктопа */
     block-size: auto;
     white-space: normal;
     display: block;
@@ -603,7 +449,7 @@
   
   .section-concentration .section__content {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); /* 3 карточки в ряд */
+    grid-template-columns: repeat(3, 1fr);
     gap: 20px;
   }
   
@@ -613,7 +459,4 @@
     gap: 10px;
     height: 100%;
   }
-
-
 }
-
