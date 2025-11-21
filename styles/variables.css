@@ -2,3 +2,24 @@
   Переменные для вашего проекта
   и их переопределение под различные устройства
 */
+:root {
+  /* путь к тёмной фону */
+   --cover-image: url("../images/cover-image-dark.png");
+
+  --accent-color: #FF0070;
+  --menu-color: #FF0070;
+  --menu-color-hover: rgba(255, 0, 112, 0.40);
+  --title-color: #DB00FF;
+  --text-title-color: #000028;
+  --main-text-color: #F1B2CE;
+  --bg-color: #000028;
+  --section-title-color: #FF0070;
+
+  
+  /* Отступы */
+  --section-gap: 50px;
+  --block-gap: 20px;
+  
+  /* кажется у всего здесь этот размер */
+  --text-size: 18px;
+}
