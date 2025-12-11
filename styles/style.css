@@ -574,6 +574,7 @@
   .third .content__title {
     grid-column: 1;
     max-width: none;
+    padding-top: 2px;
   }
 
   .third > div {
