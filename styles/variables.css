@@ -2,20 +2,21 @@
   Переменные для вашего проекта
   и их переопределение под различные устройства
 */
+
 :root {
   /* Основные цвета темной темы */
-  --title-color: #db00ff;               
-  --accent-color: #ff0070;              
-  --border-color: #ff0070;          
+  --title-color: #db00ff;
+  --accent-color: #ff0070;
+  --border-color: #ff0070;
   --text-color: #f1b2ce;
   
   /* нельзя их сплавлять воедино они - разного цвета в светлой теме */
   
-  --bg-color: #000028;                   
-  --subtitle-color: #000028;             
-  --bg-image: url(../images/cover-image-dark.png); 
+  --bg-color: #000028;
+  --subtitle-color: #000028;
+  --bg-image: url(../images/cover-image-dark.png);
   --menu-color-hover: rgba(255, 0, 112, 0.40); /* Полупрозрачный розовый */
-  --section-title-color: #ff0070;       
+  --section-title-color: #ff0070;
  
   --font-family: "IBM Plex Mono", monospace;
 }
