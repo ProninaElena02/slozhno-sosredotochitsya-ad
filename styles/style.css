@@ -33,7 +33,7 @@
 
 .header__theme-menu-list {
   display: flex;
-  gap: 10px;
+  gap: 12px;
   flex-direction: column;
   /* именно это свойство отодвинуло элементы в другой край */
   align-items: flex-end;
@@ -214,7 +214,7 @@
 /* в третьей секции расстояние между артиклями - 20*/
 .article__list {
   display: grid;
-  gap: 20px;
+  gap: 21px;
 }
 
 /* третья - заголовок для артиклей - тоньше */
@@ -240,7 +240,7 @@
 }
 
 .third {
-  margin-block-end: 52px;
+  margin-block-end: 50px;
 }
 
 /* контейнеры внутри секций - коробки для артиклей 1ая и 2ая карточка*/
@@ -323,7 +323,7 @@
 
   .header__theme-menu {
     justify-self: end;
-    margin-block-start: 167px;
+    margin-block-start: 170px;
     padding: 0;
   }
 
@@ -429,7 +429,7 @@
   /* Список внутри правого блока */
   .third .article__list {
     display: grid;
-    gap: 20px;
+    gap: 21px;
   }
 
   .gallery__title {
@@ -518,12 +518,20 @@
   }
 
   .first {
-    gap: 13px; /* gap переобозначен для десктопа чтобы хотябы заголовки встали на место раз текст не хочет*/
+     /* gap переобозначен для десктопа чтобы хотябы заголовки встали на место раз текст не хочет*/
+     gap: 13px;
   }
 
   .first .content__title {
     max-width: 100%;
     width: 100%;
+  }
+
+  .first .article__text {
+    /* Микро-коррекция для правильных переносов */
+    letter-spacing: -0.02px;
+    /* word-spacing: -0.3px; */
+    text-rendering: geometricPrecision;
   }
 
   /* вторая */
