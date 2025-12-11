@@ -1,88 +1,79 @@
+
 .page {
-  background-color: var(--bg-color);
-  background-image: var(--cover-image);
+  /* сохраните в разметке и стилях класс page. На его основе работает скрипт. */
+  background-color: var(--bg-color, #000028);
+  background-image: var(--bg-image);
   background-repeat: no-repeat;
-  background-position: center;
   background-size: cover;
   background-attachment: fixed;
-  color: var(--main-text-color);
+  background-position: center;
   font-family: 'IBM Plex mono', monospace;
-  font-size: var(--text-size);
-  line-height: 1.3;
-  margin: 0;
+  font-size: 18px;
+  font-weight: 400;
 }
+
+/* шапка */
 
 .header {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: repeat(3, auto);
-  align-items: center;
   position: relative;
-  margin-block: 10px;
-  margin-inline: 10px;
-  grid-template-areas: 
-    ". header__theme-menu"
-    "header__accent-header header__accent-header"
-    "header__accent-paragraph header__accent-paragraph";
-  block-size: 100vb;
-  padding-block-start: 10px;
-}
-
-.header::before,
-.footer::before {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  display: block;
-  width: 26px;
-  height: 26px;
-}
-
-.header::after,
-.footer::after {
-  content: "";
-  position: absolute;
-  display: block;
-  top: 0;
-  right: 0;
-  width: 26px;
-  height: 26px;
+  display: grid;
+  grid-template-rows: 1fr min-content 1fr;
+  width: 100%;
+  /* margin-block-end: 40px; */
+  padding: 10px;
+  min-block-size: 668px;
+  height: 100vh;
 }
 
 .header__theme-menu {
-  grid-area: header__theme-menu;
-  justify-self: end;
-  align-self: start;
-  margin-block-start: 0px;
-   margin-block-end: 20px;
+  /* justify-self: end; */
+  /* этот падинг добавляется самому куску сетки - в итоге 10 (это от хэдера)+10 (тут)+ 55 маргин = 75 */
+  padding: 10px 0px;
+  margin-block-start: 55px;
 }
 
 .header__theme-menu-list {
-  display: grid;
-  grid-template-rows: repeat(3, auto);
+  display: flex;
   gap: 10px;
-  align-content: center;
-  min-height: 220px;
-  list-style-type: none;
-  min-height: 100px;
-  margin: 0;
-  padding: 0;
+  flex-direction: column;
+  /* именно это свойство отодвинуло элементы в другой край */
+  align-items: flex-end;
+}
+
+.header__title {
+  font-size: clamp(7.25rem, 7.0115rem + 1.0178vw, 7.5rem);
+  font-weight: 700;
+  line-height: 82.5%;
+  align-self: center;
+  color: var(--title-color);
+  text-shadow: 4px 4px 0px var(--accent-color);
+}
+
+.header__text {
+  justify-self: end;
+  align-self: center;
+  /* ширина может быть любой, но не больше 100% от родителя */
+  max-width: 100%;
+  font-weight: 700;
 }
 
 .header__theme-menu-button {
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 100%;
+  padding: 3px 13px;
   border: none;
-  padding: 2px 12px;
-  color: var(--menu-color);
-  background-color: transparent;
-  font-size: var(--text-size);
-  line-height: 1;
-  text-transform: lowercase;
+  background: transparent;
   cursor: pointer;
+  text-transform: lowercase;
+  color: var(--border-color);
 }
 
+/* эффекты кнопок */
+
 .header__theme-menu-button:hover {
-  outline: 1px solid var(--menu-color-hover);
+  /* !!!!!! ::::ВОЗМОЖНО НУЖНО ПРОСТО УМЕНЬШАТЬ ПРОЗРАЧНОСТЬ */
+  outline: 1px solid var(--menu-color-hover, #ff007040);
 }
 
 .header__theme-menu-button:focus {
@@ -90,140 +81,205 @@
 }
 
 .header__theme-menu-button:focus-visible {
-  border-block-end: 1px solid var(--menu-color);
+  border-block-end: 1px solid var(--border-color);
 }
 
 .header__theme-menu-button_active {
-  outline: 1px solid var(--menu-color);
+  outline: 1px solid var(--border-color);
   pointer-events: none;
 }
 
-.header__title {
-  color: var(--title-color);
-  font-weight: 700;
-  line-height: 0.825;
-  text-shadow: 4px 4px 0 var(--accent-color);
-  align-self: center;
-  font-size: clamp(7.25rem, 7.0115rem + 1.0178vw, 7.5rem);
-  grid-area: header__accent-header;
-  margin-block: 20px 10px; 
+
+
+.header__rec {
+  position: absolute;
+  top: 10px;
+  right: 19px; 
+  color: var(--accent-color);
+  font-size: 18px;
+  line-height: 1.4;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
-.header__text {
-  font-size: var(--text-size);
-  font-weight: 700;
-  line-height: 1.3;
-  max-inline-size: 100%;
-  grid-area: header__accent-paragraph;
-  margin-block: 55px;
-  margin-block: 20px 40px;
+/*
+.header__rec {
+  top: 20px;
+  right: 29px;
+} 
+*/
+
+.header__rec::before {
+  content: "REC";
 }
+
+.header__rec::after {
+  content: "";
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background-color: var(--accent-color);
+  box-shadow: 0 0 4px 2px var(--accent-color);
+}
+
+/* Уголки*/
 
 .title-decor {
-  color: var(--text-title-color);
   background-color: var(--accent-color);
+  color: var(--subtitle-color);
 }
+
+.ygol::after {
+  content: "";
+  position: absolute;
+  border-inline-end: 1px solid var(--border-color);
+  border-block-start: 1px solid var(--border-color);
+  width: 25px;
+  height: 25px;
+  top: 10px;
+  right: 10px;
+}
+
+.ygol::before {
+  content: "";
+  position: absolute;
+  border-inline-start: 1px solid var(--border-color);
+  border-block-end: 1px solid var(--border-color);
+  bottom: 10px;
+  width: 25px;
+  height: 25px;
+  left: 10px;
+}
+
+/* Основной контент*/
 
 .main {
-  display: flex;
-  flex-direction: column;
-  gap: 50px;
-  padding: 40px 10px;
+  padding: 0px 10px;
+  margin-top: 40px;
 }
 
-.section {
-  display: grid;
-  gap: 20px;
-}
 
-.section__title {
-  color: var(--section-title-color);
-  font-size: var(--text-size);
+
+/* общие стилили и цвета*/
+.title {
   font-weight: 700;
-  line-height: 1.3;
+  font-size: 18px;
+  line-height: 23px;
 }
 
-.section__content {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-.article {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+.content__title {
+  color: var(--section-title-color);
 }
 
 .article__title {
-  font-size: var(--text-size);
   font-weight: 700;
-  line-height: 1.3;
+  font-size: 18px;
+  color: var(--subtitle-color);
+  background-color: var(--accent-color);
 }
 
-.article__text {
-  color: var(--main-text-color);
-  font-size: var(--text-size);
-  font-weight: 400;
-  line-height: 1.3;
-}
 
-.article__text p {
-  margin: 0;
-}
 
-.article__text p + p {
-  margin-block-start: 10px;
-}
+/* Ссылки */
 
 .link {
-  color: var(--main-text-color);
+  color: var(--text-color);
   text-decoration: none;
   text-shadow: 2px 2px 0 var(--accent-color);
-  transition: text-shadow 0.3s ease;
   border-bottom: 1px solid transparent;
 }
 
 .link:hover {
-  border-bottom-color: var(--main-text-color);
+  border-bottom-color: var(--text-color);
 }
 
 .link:focus {
-  outline: 2px solid var(--main-text-color);
+  outline: 1px solid var(--text-color);
 }
 
 .link:focus-visible {
-  outline: 1px solid var(--main-text-color);
+  outline: 1px solid var(--text-color);
   outline-offset: 1px;
 }
 
-.section__subtitle {
-  margin-block-end: 20px;
+/* Карточки  */
+
+
+/* используем грид чтобы потом его модифицировать */
+.article {
+  display: grid;
+  gap: 10px;
 }
 
-.section__subtitle-text {
-  font-size: var(--text-size);
-  font-weight: 700;
-  line-height: 1.3;
-  margin: 0;
+.article__text {
+  line-height: 130%;
+  font-weight: 400;
+  font-size: 18px;
+  color: var(--text-color);
 }
 
-.article__text strong {
-  font-weight: 700;
-  text-shadow: 2px 2px 0 var(--accent-color);
-}
-
-.gallery {
-  padding: 40px 10px;
-  display: flex;
-  flex-direction: column;
+/* в третьей секции расстояние между артиклями - 20*/
+.article__list {
+  display: grid;
   gap: 20px;
 }
 
+/* третья - заголовок для артиклей - тоньше */
+.third .article__title {
+  font-weight: 400; 
+}
+
+
+
+/* Контейнеры секций у каждого из них еть доп класс*/
+.section__content {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: auto;
+}
+
+/* отступы внизу у каждой секции*/
+.first {
+  /* чтобы идеально нужно 52 */
+  margin-block-end: 52px;
+}
+
+.second {
+  margin-block-end: 50px;
+}
+
+.third {
+  margin-block-end: 52px;
+}
+
+/* контейнеры внутри секций - коробки для артиклей 1ая и 2ая карточка*/
+.first__container,
+.second__container {
+  display: grid;
+  gap: 20px;
+}
+
+/* Отступы между карточками в первой секции */
+/* .first__container .article {
+  margin-block-end: 20px;
+} */
+
+/* супер заголовок в третьей секции */
+.third__title {
+  margin-block-end: 20px;
+}
+
+
+
+
+/* верия 3 */
+
 .gallery__title {
-  font-size: var(--text-size);
+  font-size: 18px;
   font-weight: 700;
   line-height: 1.3;
+  margin-bottom: 10px;
 }
 
 .gallery__grid {
@@ -235,108 +291,179 @@
 .gallery__image {
   width: 100%;
   height: auto;
-  object-fit: cover;
-  display: block;
 }
 
+.dark-title {
+  color: var(--subtitle-color, #000028);
+  background-color: var(--accent-color, #ff0070);
+  max-width: none;
+}
+
+/* Футер */
+
 .footer {
-  min-block-size: 100vh;
-  block-size: 100vb;
-  padding: 20px;
   position: relative;
   display: flex;
-  align-items: center;
+  flex-direction: row;
+  padding: 20px;
+  min-height: 668px;
+  height: 100vh;
+  margin-block-start: 40px;
   justify-content: center;
+  align-items: center;
 }
 
 .footer__title {
-  text-shadow: 4px 4px 0 var(--accent-color);
-  font-size: clamp(7.25rem, 7.0115rem + 1.0178vw, 7.5rem);
-  color: var(--title-color);
+  align-self: center;
   font-weight: 700;
+  color: var(--title-color, #db00ff);
+  text-shadow: 2px 2px 0px var(--accent-color);
+  font-family: var(--font-family, "IBM Plex Mono", monospace);
+  font-size: clamp(7.25rem, 7.0115rem + 1.0178vw, 7.5rem);
   line-height: 82.5%;
 }
 
-@media (width >= 768px) {
-  .header {
-    grid-template-areas: 
-      ". header__theme-menu"
-      "header__accent-header header__accent-header"
-      ". header__accent-paragraph";
-    margin-inline: 0 20px;
-    margin-block: 20px;
-  }
 
-  .header::before {
-    left: 20px;
+/* Планшет (768px) */
+@media (width >= 768px) {
+  .main {
+    padding: 0px 20px;
+  }
+  
+  .header {
+    margin-block-end: 60px;
+    padding: 20px;
+  }
+  
+  .header__theme-menu {
+    justify-self: end;
+    margin-block-start: 167px;
+    padding: 0;
+  }
+  
+  .header__theme-menu-list {
+    flex-direction: column;
+    gap: 13px;
   }
   
   .header__title {
     font-size: clamp(7.5rem, 0.5625rem + 14.4531vw, 9.8125rem);
-    margin-inline-start: 0%;
+    margin-left: -3%;
   }
   
   .header__text {
-    margin-block: 162px;
-    margin-inline-start: 10px;
-    justify-self: end;
+    max-width: 364px;
   }
   
-  .main {
-    padding: 0 20px;
-    gap: 80px;
+/* уголки отодвинуты на 20 пикселнй */
+
+  .ygol::after {
+    top: 20px;
+    right: 20px;
+  }
+  
+  .ygol::before {
+    bottom: 20px;
+    left: 20px;
+  }
+  
+  .header__rec {
+    top: 20px;
+    right: 29px;
   }
 
-  .section:first-of-type {
-    display: grid;
-    grid-template-columns: minmax(236px, 315px) 1fr;
+  
+
+
+    /* на все секции положим в грид контейнер и вторая часть должна быть в два раза шире */
+  .section__content {
+    grid-template-columns: minmax(236px, 1fr) 2fr;
     gap: 20px;
-    align-items: start;
   }
-  
-  .section:first-of-type .section__title {
+
+  /* Первая секция отступ для низа  и расположение текста по колонкам */
+  .first {
+    margin-block-end: 80px;
+  }
+
+  .first .content__title {
+    max-width: 230px;
     grid-column: 1;
-    margin-top: 18px;
-    padding-block-start: 0;
   }
-  
-  .section:first-of-type .section__content {
+
+  .first__container {
     grid-column: 2;
+
+  }
+
+  /* Вторая секция */
+  .second {
+    margin-block-end: 80px;
+    grid-template-columns: auto;  /* вот так можно переопределять гриды */
+  }
+
+  .second .content__title {
+    max-width: 236px;
+  }
+
+  /* это контейнер со статьями */
+  /* .second__container {
     display: flex;
     flex-direction: column;
     gap: 20px;
+    width: 100%;
+  } */
+
+  .second .article {
+    width: 100%;
+    /* flex: 1 0 auto; */
   }
 
-  .section:nth-of-type(3) {
+    /* Третья секция */
+  .third {
+    margin-block-end: 80px;
+  }
+
+  /* заголовок слева и он сделан под макет */
+  .third .content__title {
+    max-width: 230px;
+    grid-column: 1; /* первая строка и первая колонка */
+    grid-row: 1; 
+  }
+
+  /* нужно было както поймать и тот самый доп. заголовок который сделан div  */
+  .third > div {
+    grid-column: 2; 
+    grid-row: 1; /* та же строка но вторая колонка */
     display: grid;
-    grid-template-columns: 1fr 2fr;
-    gap: 20px;
-    align-items: start;
-  }
-  
-  .section:nth-of-type(3) .section__title {
-    grid-column: 1;
-    margin: 0;
-    align-self: start;
-  }
-  
-  .section:nth-of-type(3) .section__content {
-    grid-column: 2;
-    display: flex;
-    flex-direction: column;
     gap: 20px;
   }
 
-  .gallery {
-    padding: 60px 20px;
+  /* у доп заголовка отступ в 20 пикс до текстов, но он уже был определён в мобильной версии а тут получается ещё 20 пикселей из-за грид сетки потому в сумме бы получилось 40 */
+  .third__title {
+    margin-block-end: 0px;
   }
-  
+
+  /* Список внутри правого блока */
+  .third .article__list {
+    display: grid;
+    gap: 20px;
+  }
+
+  .gallery__title {
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.3;
+  margin-bottom: 20px;
+  }
+
   .gallery__grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(3, auto);
     gap: 20px;
   }
+  
   
   .gallery__image:nth-child(1) {
     grid-column: 1 / 3;
@@ -361,123 +488,128 @@
   .gallery__image:nth-child(5) {
     grid-column: 2 / 4;
     grid-row: 3 / 4;
-  }
+  } 
 
+
+  
   .gallery__image {
     width: 100%;
     height: 100%;
     object-fit: cover;
     object-position: center;
-    display: block;
   }
 
-  .header__theme-menu {
-    grid-area: header__theme-menu;
-    justify-content: end;
-  }
 
-  .header__theme-menu-list {
-    min-height: 120px;
-  }
 
-  .section-concentration {
-    display: grid;
-    grid-template-columns: 236px 1fr;
-    grid-template-rows: auto;
-    grid-template-areas: 
-      "title content";
-    gap: 20px;
-    align-items: start;
+  .footer {
+    margin-block-start: 60px;
+    padding: 262px 10px;
   }
   
-  .section-concentration .section__title {
-    grid-area: title;
-    inline-size: 236px;
-    margin: 0;
-    align-self: start;
-  }
-  
-  .section-concentration .section__content {
-    grid-area: content;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-  }
-
-   .header__title {
-    margin-block: 40px 20px; 
-  }
-
-  .header__text {
-    margin-block: 40px 80px;
-    margin-inline-start: 10px;
-    justify-self: end;
+  .footer__title {
+    font-size: clamp(7.5rem, 0.5625rem + 14.4531vw, 9.8125rem);
   }
 }
 
+/* Десктоп  */
 @media (width >= 1024px) {
-  .header {
-    grid-template-areas: 
-      "header__theme-menu header__theme-menu"
-      "header__accent-header header__accent-header"
-      ". header__accent-paragraph";
-    margin-inline: 0 20px;
-    margin-block: 20px;
-  }
-
   .header__theme-menu {
     justify-self: center;
-    margin-inline-start: 20px;
+    margin-block-start: 0;
   }
   
   .header__theme-menu-list {
-    align-content: start;
-    grid-template-columns: repeat(3, auto);
-    min-height: 80px;
+    flex-direction: row;
+    gap: 10px;
   }
   
   .header__title {
-    margin-inline-start: 0%;
-    margin-block: 60px 20px;
+    margin-left: -2%;
+  }
+  
+  .header__text {
+    max-width: 50%;
+  }
+  
+
+  .section__content {
+    grid-template-columns: minmax(236px, 1fr) 2fr;
+    
   }
 
-  .section:nth-of-type(3) .article__title {
-    font-weight: 400;
-  }
-  
-  .gallery {
-    padding: 80px 20px;
-  }
-  
-  .gallery__grid {
-    gap: 25px;
+  .article__text {
+    width: 100%;
+    max-width: 100%;
   }
 
-  .section-concentration {
-    display: block;
+  .first {
+    gap: 13px; /* gap переобозначен для десктопа чтобы хотябы заголовки встали на место раз текст не хочет*/
   }
-  
-  .section-concentration .section__title {
-    inline-size: 100%;
-    margin-block-end: 20px;
-    block-size: auto;
-    white-space: normal;
-    display: block;
+
+
+  .first .content__title {
+   
+    max-width: 100%; 
+    width: 100%; 
   }
-  
-  .section-concentration .section__content {
+
+
+
+  /* вторая */
+    .second {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: 1fr; /* Заголовок занимает всю ширину */
+    margin-block-end: 80px;
+  }
+  
+  .second .content__title {
+    max-width: 315px; /* Ограничивает ширину */
+  
+   width: auto;
+    grid-column: 1 / -1; /* Растянуть на все колонки */
+    text-align: left; 
+    /* margin-bottom: 20px; */
+  }
+  
+  /* Контейнер карточек - под заголовком, тоже на всю ширину */
+  .second__container {
+    grid-column: 1 / -1; /* Растянуть на все колонки */
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Три колонки статей */
     gap: 20px;
   }
   
-  .section-concentration .article {
+  /* Сами артиклы */
+  .second .article {
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    height: 100%;
+    height: 100%; /* Чтобы все артиклы были одинаковой высоты */
   }
-  .header__text {
-    margin-block: 40px 100px;
+
+
+ /* третья */
+
+  .third {
+    margin-block-end: 80px;
+    gap: 11px;
+  }
+  
+  .third .content__title {
+    grid-column: 1;
+    max-width: none;
+  }
+  
+  .third > div {
+    grid-column: 2;
+  }
+  
+  .article__list {
+    display: flex;
+    flex-direction: column; /* Вертикальный список */
+    gap: 20px;
+  }
+
+  .footer {
+    margin-block-start: 62px;
   }
 }

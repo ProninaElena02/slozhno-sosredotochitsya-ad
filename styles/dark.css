@@ -1,49 +1,14 @@
 :root.theme-dark {
-  --cover-image: url("../images/cover-image-dark.png");
-  --accent-color: #FF0070;
-  --menu-color: #FF0070;
-  --menu-color-hover: rgba(255, 0, 112, 0.40);
-  --title-color: #DB00FF;
-  --text-title-color: #000028;
-  --main-text-color: #F1B2CE;
+
+  --title-color: #db00ff;
+  --section-title-color: #ff0070;
+  --font-family: "IBM Plex Mono", monospace;
   --bg-color: #000028;
-  --section-title-color: #FF0070;
-}
+  --accent-color: #ff0070;
+  --text-color: #f1b2ce;
+  --subtitle-color: #000028;
+  --border-color: #ff0070;
+  --bg-image: url(../images/cover-image-dark.png);
+  --menu-color-hover: rgba(255, 0, 112, 0.40);
 
-
-.theme-dark .header__rec {
-  position: absolute;
-  top: 0;
-  right: 9px;
-  color: var(--accent-color);
-  font-size: 18px;
-  line-height: 1.4;
-  display: flex;
-}
-
-.theme-dark .header__rec::before {
-  content: "REC";
-}
-
-.theme-dark .header__rec::after {
-  content: "";
-  width: 9px;
-  height: 9px;
-  border-radius: 50%;
-  background-color: var(--accent-color);
-  box-shadow: 0 0 4px 2px var(--accent-color);
-  margin-inline-start: 8px;
-  margin-block-start: 10px;
-}
-
-.theme-dark .header::before,
-.theme-dark .footer::before {
-  border-block-end: 1px solid var(--accent-color);
-  border-inline-start: 1px solid var(--accent-color);
-}
-
-.theme-dark .header::after,
-.theme-dark .footer::after {
-  border-block-start: 1px solid var(--accent-color);
-  border-inline-end: 1px solid var(--accent-color);
 }

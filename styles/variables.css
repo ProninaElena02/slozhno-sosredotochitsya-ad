@@ -3,23 +3,37 @@
   и их переопределение под различные устройства
 */
 :root {
-  /* путь к тёмной фону */
-   --cover-image: url("../images/cover-image-dark.png");
-
-  --accent-color: #FF0070;
-  --menu-color: #FF0070;
-  --menu-color-hover: rgba(255, 0, 112, 0.40);
-  --title-color: #DB00FF;
-  --text-title-color: #000028;
-  --main-text-color: #F1B2CE;
-  --bg-color: #000028;
-  --section-title-color: #FF0070;
-
+  /* Основные цвета темной темы */
+  --title-color: #db00ff;               
+  --accent-color: #ff0070;              
+  --border-color: #ff0070;          
+  --text-color: #f1b2ce;
   
-  /* Отступы */
-  --section-gap: 50px;
-  --block-gap: 20px;
+  /* нельзя их сплавлять воедино они - разного цвета в светлой теме */
   
-  /* кажется у всего здесь этот размер */
-  --text-size: 18px;
+  --bg-color: #000028;                   
+  --subtitle-color: #000028;             
+  --bg-image: url(../images/cover-image-dark.png); 
+  --menu-color-hover: rgba(255, 0, 112, 0.40); /* Полупрозрачный розовый */
+  --section-title-color: #ff0070;       
+ 
+  --font-family: "IBM Plex Mono", monospace;
+}
+
+/* Включаем иконку REC для темной темы */
+.decor {
+  display: block; /* Было none, стало block */
+}
+
+/* Дополнительно, если нужно стилизовать уголки */
+.header::before,
+.footer::before {
+  border-bottom: 1px solid var(--accent-color);
+  border-left: 1px solid var(--accent-color);
+}
+
+.header::after,
+.footer::after {
+  border-top: 1px solid var(--accent-color);
+  border-right: 1px solid var(--accent-color);
 }
